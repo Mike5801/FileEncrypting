@@ -1,0 +1,28 @@
+{
+  "name": "fileencrypting",
+  "version": "1.0.0",
+  "description": "Project to encrypt files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mike5801/FileEncrypting.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mike5801/FileEncrypting/issues"
+  },
+  "homepage": "https://github.com/Mike5801/FileEncrypting#readme",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22",
+    "promise": "^8.3.0",
+    "zlib": "^1.0.5"
+  }
+}
