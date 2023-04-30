@@ -1,13 +1,15 @@
+/* IMPORTS DE LIBRERÍAS */
 const express = require("express");
-
 const multer = require("multer");
+const dotenv = require("dotenv")
+const path = require("path");
+const Security = require("./security.js")
 
-var path = require("path");
 
+/* CONFIGURACIÓN DE LA APLICACIÓN */
 const app = express();
-
+dotenv.config()
 const port = 5000;
-
 const log = console.log;
 
 const storage = multer.diskStorage({
@@ -19,8 +21,6 @@ const storage = multer.diskStorage({
     return callback(null, file.originalname);
   },
 });
-
-const upload = multer({ storage: storage }).array("file", 1);
 
 app.get("/", (req, res) => {
   res.sendFile("index.html", { root: __dirname });
@@ -51,7 +51,14 @@ app.post("/upload_file", function (req, res) {
 
     log(finalPath);
 
-    res.status(200).json({ code: 200, msg: "Ok" });
+    const original = process.env.SECRET_KEY_FILE;
+    Security.encryptFile("./public/", req.files[0].filename, original).then(
+      function (results) {
+        log(req.files[0]);
+
+        res.status(200).json({ code: 200, msg: "Ok" });
+      }
+    );
   });
 });
 
