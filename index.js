@@ -1,14 +1,13 @@
 /* IMPORTS DE LIBRERÍAS */
 const express = require("express");
 const multer = require("multer");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 const path = require("path");
-const Security = require("./security.js")
-
+const Security = require("./security.js");
 
 /* CONFIGURACIÓN DE LA APLICACIÓN */
 const app = express();
-dotenv.config()
+dotenv.config();
 const port = 5000;
 const log = console.log;
 
@@ -59,6 +58,17 @@ app.post("/upload_file", function (req, res) {
         res.status(200).json({ code: 200, msg: "Ok" });
       }
     );
+  });
+});
+
+app.get("/decrypt_file/:name", function (req, res) {
+  req.setTimeout(4500000);
+
+  const original = process.env.SECRET_KEY_FILE;
+  const name = req.params.name;
+
+  Security.decryptFile("./public/", name, original).then(function (results) {
+    res.status(200).json({ code: 200, msg: "Ok" });
   });
 });
 
