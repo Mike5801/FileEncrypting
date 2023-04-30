@@ -1,4 +1,4 @@
-const Security = require("../security.js")
+const Security = require("../Security/security.js")
 
 exports.uploadSolicitud = (req, res) => {
   const encryptFileName = Security.encryptFileName(req.files[0].filename)

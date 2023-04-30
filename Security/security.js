@@ -4,7 +4,7 @@ const fs = require("fs");
 const Promise = require("promise");
 const zlib = require("zlib");
 const crypto = require("crypto");
-const AppendInitVect = require("./AppendInitVect");
+const AppendInitVect = require("./AppendInitVect.js");
 
 /* CONFIGURACIÓN DE ARCHIVO */
 const log = console.log;

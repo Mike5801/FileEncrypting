@@ -1,4 +1,4 @@
-const Security = require("../security.js");
+const Security = require("../Security/security.js");
 
 exports.decrypt = (req, res, next) => {
   req.setTimeout(4500000);

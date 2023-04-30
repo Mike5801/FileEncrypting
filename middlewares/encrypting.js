@@ -1,5 +1,5 @@
 const multer = require("multer");
-const Security = require("../security.js");
+const Security = require("../Security/security.js");
 const path = require("path");
 
 const storage = multer.diskStorage({
