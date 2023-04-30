@@ -14,19 +14,23 @@
       <h1>Multipart File Upload</h1>
 
       <form
-        action="/upload_file"
+        action="/solicitud"
         method="POST"
         id="form"
         enctype="multipart/form-data"
       >
         <div class="input-group">
-          <label for="files">Select files</label>
-
+          <label for="name">Select files</label>
+          <input id="name" name="name" type="name" />
+        </div>
+        <div class="input-group">
+          <label for="files">Nombre</label>
           <input id="file" name="file" type="file" multiple />
         </div>
 
         <button class="submit-btn" type="submit">Upload</button>
       </form>
+      <a href="/solicitud/Logo_Grupo_Imagen_Multimedia.2016.png.enc">Hola</a>
     </div>
 
     <script src="index.js"></script>

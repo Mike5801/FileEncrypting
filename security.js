@@ -13,11 +13,21 @@ function getCipherKey(password) {
   return crypto.createHash("sha256").update(password).digest();
 }
 
+exports.encryptFileName = function (fileName) {
+  return `${fileName}.enc`
+};
+
+exports.decryptFileName = function (fileName) {
+  let newFileName = fileName.replace(".enc", "")
+  return `des_${newFileName}`
+};
+
+
 exports.encryptFile = function (filePath, originalName, password) {
   return new Promise(function (resolve, reject) {
-    log("Empezando encriptación");
-    log(filePath);
-    log(originalName);
+    // log("Empezando encriptación");
+    // log(filePath);
+    // log(originalName);
     const initVect = crypto.randomBytes(16);
     // Generate a cipher key from the password.
     const CIPHER_KEY = getCipherKey(password);
@@ -30,7 +40,7 @@ exports.encryptFile = function (filePath, originalName, password) {
     const writeStream = fs.createWriteStream(
       path.join(filePath + "/" + originalName + ".enc")
     );
-    log("Previo encriptación");
+    // log("Previo encriptación");
     readStream
       .pipe(gzip)
       .pipe(cipher)
@@ -38,7 +48,7 @@ exports.encryptFile = function (filePath, originalName, password) {
       .pipe(writeStream)
       .on("finish", () => {
         ////log('All writes are now complete.');
-        log("Finalizando encriptación");
+        // log("Finalizando encriptación");
         fs.access(filePath + "/" + originalName, fs.F_OK, (err) => {
           if (err) {
             console.error(err);
@@ -62,9 +72,9 @@ exports.encryptFile = function (filePath, originalName, password) {
 exports.decryptFile = function (filePath, originalName, password) {
   return new Promise(function (resolve, reject) {
     log("Empezando des encriptación");
-    log(filePath);
-    log(originalName);
-    log(filePath + originalName);
+    // log(filePath);
+    // log(originalName);
+    // log(filePath + originalName);
 
     const readInitVect = fs.createReadStream(filePath + originalName, {
       end: 15,
